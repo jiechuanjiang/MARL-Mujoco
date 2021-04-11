@@ -1,5 +1,6 @@
 import os, sys  
 import numpy as np
+import gym
 import tensorflow as tf
 from model import Agent
 from buffer import ReplayBuffer

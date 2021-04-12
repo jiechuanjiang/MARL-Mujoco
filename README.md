@@ -8,6 +8,6 @@ As of today, the following algorithms have been implemented:
 - [x] MADDPG
 - [x] DOP
 - [ ] MASAC
-- [ ] IAC
+- [ ] IA2C
 
 

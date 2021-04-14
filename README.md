@@ -7,7 +7,9 @@ We implement some popular multi-agent reinforcement learning algorithms on Mujoc
 As of today, the following algorithms have been implemented:
 - [x] MADDPG
 - [x] DOP
+- [x] IPPO
+- [x] IA2C
 - [ ] MASAC
-- [ ] IA2C
+- [ ] COMA
 
 

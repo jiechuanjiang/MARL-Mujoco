@@ -10,7 +10,6 @@ config_tf.gpu_options.allow_growth = True
 sess = tf.Session(config=config_tf)
 
 env = gym.make('Hopper-v3')
-test_env = gym.make('Hopper-v3')
 n_ant = 3
 state_space = 11
 n_actions = 1

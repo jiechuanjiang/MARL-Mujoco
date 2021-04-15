@@ -3,7 +3,9 @@ import tensorflow as tf
 from keras import backend as K
 from keras.layers import Lambda, Input, Dense, Concatenate, Add, Reshape
 from keras.models import Model
-
+EPS = 1e-8
+LOG_STD_MAX = 2
+LOG_STD_MIN = -20
 def build_actor(num_features,n_actions):
 
 	I1 = Input(shape = (num_features,))
@@ -12,6 +14,7 @@ def build_actor(num_features,n_actions):
 
 	mu = Dense(n_actions)(h2)
 	log_std = Dense(n_actions)(h2)
+	log_std = Lambda(lambda x: K.clip(x, LOG_STD_MIN, LOG_STD_MAX))(log_std)
 	std = Lambda(lambda x: K.exp(x))(log_std)
 	pi = Lambda(lambda x: x[0] + x[1]*K.random_normal(shape=(K.shape(x[0]))))([mu, std])
 	logp_pi = Lambda(lambda x: K.reshape(K.sum(-0.5*(((x[0]-x[1])/(K.exp(x[2])+EPS))**2 + 2*x[2] + np.log(2*np.pi)), axis=1) - K.sum(2*(np.log(2) - x[0] - K.softplus(-2*x[0])), axis=1), (-1,1)))([pi, mu, log_std])

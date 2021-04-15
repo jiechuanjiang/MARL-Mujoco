@@ -10,6 +10,6 @@ As of today, the following algorithms have been implemented:
 - [x] COMA (continuous version)
 - [x] IPPO
 - [x] IA2C
-- [ ] ISAC
+- [x] ISAC
 
 

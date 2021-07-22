@@ -97,7 +97,7 @@ class Agent(object):
 		self.opt_critics = []
 		for i in range(self.n_ant):
 
-			pi_loss = - tf.reduce_mean(self.critics[0]([self.actors[i].inputs[0],self.actors[i].outputs[1]]))
+			pi_loss = - tf.reduce_mean(self.critics[i]([self.actors[i].inputs[0],self.actors[i].outputs[1]]))
 			entropy_loss = tf.reduce_mean(self.actors[i].outputs[2])
 			self.opt_actors.append(tf.train.AdamOptimizer(0.001).minimize(pi_loss + self.alpha*entropy_loss,var_list = self.actors[i].trainable_weights))
 			self.opt_critics.append(tf.train.AdamOptimizer(0.001).minimize(tf.reduce_mean((self.label[i] - self.critics[i].outputs[0])**2),var_list = self.critics[i].trainable_weights))
